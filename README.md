@@ -9,37 +9,6 @@ Menus manager to build your menus with json file or database provider
 ```bash
 composer require tomatophp/tomato-menus
 ```
-after install your package please run this command
-
-```bash
-php artisan tomato-menus:install
-```
-
-## Publish Assets
-
-you can publish config file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-menus-config"
-```
-
-you can publish views file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-menus-views"
-```
-
-you can publish languages file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-menus-lang"
-```
-
-you can publish migrations file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-menus-migrations"
-```
 
 ## Support
 
