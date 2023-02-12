@@ -1,3 +1,5 @@
+![Screenshot](https://github.com/tomatophp/tomato-notifications/blob/master/art/screenshot.png)
+
 # Tomato menus
 
 Menus manager to build your menus with json file or database provider
@@ -45,7 +47,7 @@ you can join our discord server to get support [TomatoPHP](https://discord.gg/Xq
 
 ## Docs
 
-you can check docs of this package on [Docs](https://docs.tomatophp.com/plugins/laravel-package-generator)
+you can check docs of this package on [Docs](https://docs.tomatophp.com/plugins/tomato-menus)
 
 ## Changelog
 

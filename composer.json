@@ -10,7 +10,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Tomatophp\\TomatoMenus\\": "src/"
+            "TomatoPHP\\TomatoMenus\\": "src/"
         }
     },
     "autoload-dev": {
@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Tomatophp\\TomatoMenus\\TomatoMenusServiceProvider"
+                "TomatoPHP\\TomatoMenus\\TomatoMenusServiceProvider"
             ]
         }
     },
@@ -33,6 +33,9 @@
     ],
     "require": {
         "php": "^8.0.2",
-        "tomatophp/console-helpers": "^1.0"
+        "tomatophp/console-helpers": "^1.0",
+        "tomatophp/tomato-admin": "^1.0",
+        "tomatophp/tomato-php": "^1.0",
+        "tomatophp/tomato-components": "^1.0"
     }
 }
