@@ -1,4 +1,4 @@
-![Screenshot](https://github.com/tomatophp/tomato-notifications/blob/master/art/screenshot.png)
+![Screenshot](https://github.com/tomatophp/tomato-menus/blob/master/art/screenshot.png)
 
 # Tomato menus
 
