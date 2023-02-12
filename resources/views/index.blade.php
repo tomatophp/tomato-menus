@@ -87,7 +87,7 @@
                             </button>
 
                             <x-splade-transition show="toggled" class="border-b border-gray-300">
-                                <x-splade-form method="POST" action="{{route('admin.menus.item.pages', [$menu->id])}}">
+                                <x-splade-form method="POST" action="{{$menu ? route('admin.menus.item.pages', [$menu->id]) : null}}">
                                     <div class="p-4 flex flex-col justify-start">
                                         @foreach($pages['dashboard'] as $key=>$page)
                                             <x-splade-checkbox :name="$key" :label="$key" />
