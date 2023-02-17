@@ -8,7 +8,7 @@ class MenuRenderBase {
     public static function menu($key, $by = 'key')
     {
         return Menu::where($by, $key)->with('menusItems', function ($q){
-            $q->where('parent_id', null)->with( 'children');
+            $q->where('parent_id', null)->with( 'children')->orderBy('order', 'asc');
         })->first();
     }
     public static function render() {
