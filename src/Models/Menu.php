@@ -2,6 +2,7 @@
 
 namespace TomatoPHP\TomatoMenus\Models;
 
+use Spatie\Translatable\HasTranslations;
 use TomatoPHP\TomatoMenus\Models\MenusItem;
 use TomatoPHP\TomatoMenus\Models\MenusMeta;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +21,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Menu extends Model
 {
+    use HasTranslations;
+
+    public $translatable = ['name'];
+
+
     /**
      * @var array
      */
@@ -33,6 +39,7 @@ class Menu extends Model
     ];
 
     protected $casts = [
+        "name" => "array",
         'locations' => 'array',
         'auto_add_pages' => 'boolean',
     ];

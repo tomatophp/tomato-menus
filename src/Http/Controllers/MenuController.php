@@ -10,9 +10,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use ProtoneMedia\Splade\Facades\Toast;
+use TomatoPHP\TomatoAdmin\Facade\TomatoMenu;
 use TomatoPHP\TomatoMenus\Models\Menu;
 use TomatoPHP\TomatoMenus\Models\MenusItem;
-use TomatoPHP\TomatoPHP\Services\Menu\MenuHandler;
 
 class MenuController extends Controller
 {
@@ -35,12 +35,12 @@ class MenuController extends Controller
 
         $menusItems = $menu ? $menu->menusItems()->with('children')->where('parent_id', null)->orderBy('order', 'asc')->get() : [];
 
-        $pages = MenuHandler::get();
+        $pages = TomatoMenu::get();
         return view('tomato-menus::index', compact('menus', 'menu', 'menusItems', 'pages'));
     }
 
     public function pages(Request $request, Menu $menu){
-        $getGroup = (MenuHandler::get())['dashboard'];
+        $getGroup = TomatoMenu::get();
 
         foreach($getGroup as $key=>$value){
             if($request->get($key) == 1){
@@ -55,7 +55,7 @@ class MenuController extends Controller
                 $menuItem->save();
 
                 $counter = 0;
-                foreach($value['items'] as $item){
+                foreach($value as $item){
                     $menuCh = new MenusItem();
                     $menuCh->name =  [
                         "ar" => $item->label,
@@ -190,28 +190,22 @@ class MenuController extends Controller
 
     public function store(Request $request){
         $request->validate([
-           "name" => "required|string|max:255",
-           "auto_add_pages" => "required|boolean",
-           "locations" => "nullable|array",
+           "name" => "required|array",
+           "name*" => "required|string|max:255"
         ]);
 
-        $exists = Menu::where('key', Str::of($request->get('name'))
-            ->lower()->slug('-'))->first();
+        $exists = Menu::where('key', Str::of($request->get('name')[app()->getLocale()])->lower()->slug('-'))->first();
 
         if($exists){
             Toast::danger(__('Sorry Menu Is Exists'))->autoDismiss(2);
             return back();
         }
 
-        $locations = collect($request->get('locations'))->map(function ($location){
-            return $location === '1' ? true : false;
-        });
-
         $menu = Menu::create([
             "name" => $request->get('name'),
-            "key" => Str::of($request->get('name'))->lower()->slug('-'),
-            "auto_add_pages" => $request->get('auto_add_pages'),
-            "locations" => $locations ?: [],
+            "key" => Str::of($request->get('name')[app()->getLocale()])->lower()->slug('-'),
+            "auto_add_pages" => 0,
+            "locations" => [],
         ]);
 
          Toast::success(__('Your Menu Added Success'))->autoDismiss(2);

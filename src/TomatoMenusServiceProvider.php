@@ -3,10 +3,10 @@
 namespace TomatoPHP\TomatoMenus;
 
 use Illuminate\Support\ServiceProvider;
+use TomatoPHP\TomatoAdmin\Services\Contracts\Menu;
+use TomatoPHP\TomatoAdmin\Facade\TomatoMenu;
 use TomatoPHP\TomatoKetchup\Services\TomatoCore;
-use TomatoPHP\TomatoMenus\Menus\MenusMenu;
 use TomatoPHP\TomatoMenus\Services\MenuRenderBase;
-use TomatoPHP\TomatoPHP\Services\Menu\TomatoMenuRegister;
 
 
 class TomatoMenusServiceProvider extends ServiceProvider
@@ -52,12 +52,17 @@ class TomatoMenusServiceProvider extends ServiceProvider
         //Register Routes
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
-        TomatoMenuRegister::registerMenu(MenusMenu::class);
-
     }
 
     public function boot(): void
     {
-        //
+
+        TomatoMenu::register(
+            Menu::make()
+                ->label(trans('tomato-menus::messages.title'))
+                ->group(__('Tools'))
+                ->icon("bx bx-menu")
+                ->route("admin.menus.index"),
+        );
     }
 }

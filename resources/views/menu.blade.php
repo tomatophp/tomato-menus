@@ -2,7 +2,6 @@
 @foreach($menus as $menu)
     @if(isset($menu->children) && count($menu->children) > 0)
         <button @click.prevent="
-        $helpers.setAsideMenuGroup('{{str_replace(" ", "_", $menu->name)}}', true);
         data.asideMenuGroup['{{str_replace(" ", "_", $menu->name)}}'] =
         !data.asideMenuGroup['{{str_replace(" ", "_", $menu->name)}}']"
                 v-show="!data.makeMenuMin"

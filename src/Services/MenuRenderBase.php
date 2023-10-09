@@ -7,9 +7,10 @@ use TomatoPHP\TomatoMenus\Models\Menu;
 class MenuRenderBase {
     public static function menu($key, $by = 'key')
     {
-        return Menu::where($by, $key)->with('menusItems', function ($q){
+        $menus  = Menu::where($by, $key)->with('menusItems', function ($q){
             $q->where('parent_id', null)->with( 'children')->orderBy('order', 'asc');
         })->first();
+        return $menus;
     }
     public static function render() {
         return view('tomato-menus::menu', [
