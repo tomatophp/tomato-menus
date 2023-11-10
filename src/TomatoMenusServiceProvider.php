@@ -8,6 +8,7 @@ use TomatoPHP\TomatoAdmin\Facade\TomatoMenu;
 use TomatoPHP\TomatoKetchup\Services\TomatoCore;
 use TomatoPHP\TomatoMenus\Services\MenuRenderBase;
 
+include  __DIR__.'/helpers.php';
 
 class TomatoMenusServiceProvider extends ServiceProvider
 {
