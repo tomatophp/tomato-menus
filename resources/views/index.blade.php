@@ -60,7 +60,7 @@
                                 <x-splade-form method="POST" action="{{$menu ? route('admin.menus.item.pages', [$menu->id]) : null}}">
                                     <div class="p-4 flex flex-col justify-start">
                                         @foreach($pages as $key=>$page)
-                                            <x-splade-checkbox :name="$key" :label="$key" />
+                                            <x-splade-checkbox :name="\Illuminate\Support\Str::of($key)->replace(' ', '_')" :label="$key" />
                                         @endforeach
                                     </div>
                                     <hr>

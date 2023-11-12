@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use ProtoneMedia\Splade\Facades\Toast;
+use TomatoPHP\TomatoAdmin\Facade\Tomato;
 use TomatoPHP\TomatoAdmin\Facade\TomatoMenu;
 use TomatoPHP\TomatoMenus\Models\Menu;
 use TomatoPHP\TomatoMenus\Models\MenusItem;
@@ -39,11 +41,24 @@ class MenuController extends Controller
         return view('tomato-menus::index', compact('menus', 'menu', 'menusItems', 'pages'));
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function api(Request $request): JsonResponse
+    {
+        return Tomato::json(
+            request: $request,
+            model: Menu::class,
+        );
+    }
+
+
     public function pages(Request $request, Menu $menu){
         $getGroup = TomatoMenu::get();
 
         foreach($getGroup as $key=>$value){
-            if($request->get($key) == 1){
+            if($request->get(Str::of($key)->replace(' ','_')) == 1){
                 $menuItem = new MenusItem();
                 $menuItem->name =  [
                     "ar" => $key,

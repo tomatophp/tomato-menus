@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['web','auth','splade'])->prefix('admin/menus')->name('admin.menus.')->group(function (){
     Route::get('/', [\TomatoPHP\TomatoMenus\Http\Controllers\MenuController::class, 'index'])->name('index');
     Route::post('/', [\TomatoPHP\TomatoMenus\Http\Controllers\MenuController::class, 'store'])->name('store');
+    Route::get('/api', [\TomatoPHP\TomatoMenus\Http\Controllers\MenuController::class, 'api'])->name('api');
     Route::post('/{menu}', [\TomatoPHP\TomatoMenus\Http\Controllers\MenuController::class, 'update'])->name('update');
     Route::delete('/{menu}', [\TomatoPHP\TomatoMenus\Http\Controllers\MenuController::class, 'destroy'])->name('destroy');
 
