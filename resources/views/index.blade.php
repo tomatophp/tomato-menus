@@ -144,7 +144,7 @@
                                                             <x-splade-input name="id" type="hidden"/>
                                                             <x-splade-input name="url" label="{{__('URL')}}" placeholder="https://" />
                                                             <x-tomato-translation name="name" label="{{__('Link Text')}}" :placeholder="__('Input your text here')" />
-                                                            <x-splade-input name="icon" label="{{__('Icon')}}" :placeholder="__('Input your text here')" />
+                                                            <x-tomato-admin-icon name="icon" label="{{__('Icon')}}" placeholder="{{__('Icon')}}" />
                                                             <x-splade-select name="target" label="{{__('Open On')}}" :placeholder="__('Input your text here')">
                                                                 <option value="_self">{{__('Same Page')}}</option>
                                                                 <option value="_blank">{{__('New Page')}}</option>
