@@ -71,17 +71,19 @@ class MenuController extends Controller
 
                 $counter = 0;
                 foreach($value as $item){
-                    $menuCh = new MenusItem();
-                    $menuCh->name =  [
-                        "ar" => $item->label,
-                        "en" => $item->label
-                    ];
-                    $menuCh->icon =  $item->icon;
-                    $menuCh->url = $item->route ? route($item->route) : $item->url;
-                    $menuCh->menu_id = $menu->id;
-                    $menuCh->parent_id = $menuItem->id;
-                    $menuCh->order = $counter;
-                    $menuCh->save();
+                    if(isset($item->label)){
+                        $menuCh = new MenusItem();
+                        $menuCh->name =  [
+                            "ar" => $item->label,
+                            "en" => $item->label
+                        ];
+                        $menuCh->icon =  $item->icon;
+                        $menuCh->url = $item->route ? route($item->route) : $item->url;
+                        $menuCh->menu_id = $menu->id;
+                        $menuCh->parent_id = $menuItem->id;
+                        $menuCh->order = $counter;
+                        $menuCh->save();
+                    }
 
                     $counter++;
                 }
